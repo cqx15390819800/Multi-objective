@@ -2,14 +2,12 @@ import numpy as np
 K = ...  # 总目标数
 M = ...  # 一次实验中要同时实验几组参数
 
-
 def draw_weights(mu, sigma):
     weights = np.zeros((M, K))
     for j in range(K):
         # weights 的第 j 列，代表第 j 个目标的不同实验组的权重
         weights[:, j] = np.random.normal(loc=mu[j], scale=sigma[j]+1e-17, size=(M,))
     return weights
-
 
 def retain_top_weights(rewards, topN):
     # rewards[i][0] 是第 i 组实验的 reward（业务指标）
@@ -22,7 +20,6 @@ def retain_top_weights(rewards, topN):
         top_weights.append(rewards[i][1])
 
     return np.asarray(top_weights)
-
 
 # 参数初始化, mu 和 sigma 都是 K 维向量
 mu = np.zeros(K)
